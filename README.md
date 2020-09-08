@@ -1,2 +1,2 @@
 # Shiver-Me-Tinder
-A dating website by pirate for pirates.
+A dating website by pirates for pirates.
