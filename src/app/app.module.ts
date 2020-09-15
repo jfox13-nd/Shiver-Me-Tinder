@@ -7,6 +7,9 @@ import { HeroesListComponent } from './heroes-list/heroes-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     BrowserModule,
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {path: 'home-page', component: HomeComponent},
       {path: '', redirectTo: '/home-page', pathMatch: 'full'},
@@ -26,6 +31,7 @@ import { NavComponent } from './nav/nav.component';
     ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
