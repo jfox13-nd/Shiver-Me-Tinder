@@ -5,20 +5,23 @@ import { AppComponent } from './app.component';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { HeroesListComponent } from './heroes-list/heroes-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrisisListComponent,
     HeroesListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'crisis-list', component: CrisisListComponent},
-      {path: 'heroes-list', component: HeroesListComponent},
-      {path: '', redirectTo: '/heroes-list', pathMatch: 'full'},
+      {path: 'home-page', component: HomeComponent},
+      {path: '', redirectTo: '/home-page', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]),
   ],
