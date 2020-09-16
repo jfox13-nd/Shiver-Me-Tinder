@@ -1,0 +1,12 @@
+{
+    "users": [
+            {
+                "name": "Black Beard",
+                "description": "Not looking for hook-ups"
+            },
+            {
+                "name": "Jack Sparrow",
+                "description": "Likes long walks on the beach, yoga, travel, and plundering Spanish galleons"
+            }
+        ]
+}
