@@ -2,7 +2,17 @@
 A dating website by pirates for pirates.
 
 ## How to deploy Shiver-Me-Tinder locally:
-run `npm install` and `ng serve` inside the repository.
+Once you have the source code downloaded and unzipped, install Node.js and serve your app with the Angular CLI.
+
+From the terminal, install the Angular CLI globally with:
+
+`npm install -g @angular/cli`
+
+Then run `npm install` to install the necessary NPM packages
+
+Lastly, run `ng serve` to run the project locally
+
+For more help reference: https://angular.io/guide/setup-local
 
 * ship size (ft)
 * ship name
