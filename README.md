@@ -1,6 +1,9 @@
 # Shiver-Me-Tinder
 A dating website by pirates for pirates.
 
+## How to deploy Shiver-Me-Tinder locally:
+run `npm install` and `ng serve` inside the repository.
+
 * ship size (ft)
 * ship name
 * ____ seeking ____
