@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-profile',
@@ -14,15 +14,13 @@ export class NewProfileComponent implements OnInit {
     description: new FormControl(''),
   });
 
-  private output_string;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    alert("This form is not yet connected to a database")
+    alert('This form is not yet connected to a database');
   }
 
 }
