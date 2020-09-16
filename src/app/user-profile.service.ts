@@ -11,24 +11,17 @@ export class UserProfileService {
 
   private readonly usersUrl = '../assets/user_database.json';  // URL to web api
   user_data;
-  /*
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  */
+
   constructor(private http: HttpClient) { 
     this.prepUsers()
   }
 
   prepUsers() {
-    //this.http.get(this.usersUrl).subscribe(data => console.log(data));
-    //return this.http.get(this.usersUrl).map(res =? resizeBy.json())
-    //this.http.get(this.usersUrl).subscribe(data => {this.user_data = data;});
-
+    this.user_data = this.http.get<UserProfile[]>(this.usersUrl)
   }
 
   getUsers(): Observable<UserProfile[]> {
-    return this.http.get<UserProfile[]>(this.usersUrl)
+    return this.user_data;
   }
 
   

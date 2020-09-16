@@ -8,7 +8,7 @@ import { UserProfileService } from '../user-profile.service';
 })
 export class HomeComponent implements OnInit {
 
-  profile_data;
+  private profile_data;
   constructor(private userProfileService: UserProfileService,) { }
 
   ngOnInit(): void {
@@ -20,20 +20,13 @@ export class HomeComponent implements OnInit {
   }
 
   get_profiles(): void {
+    this.load_profiles()
     return this.profile_data;
   }
 
   log_data(): void {
+    this.load_profiles()
     console.log(this.profile_data);
-  }
-
-  add_profile(name: string, description: string): void {
-    this.profile_data["users"].push(
-      {
-        "name": name,
-        "descriptipn": description
-      }
-    )
   }
 
 }

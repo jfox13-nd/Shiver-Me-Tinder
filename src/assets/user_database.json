@@ -1,8 +1,12 @@
 {
     "users": [
             {
-                "name": "test_name",
-                "description": "test_description"
+                "name": "Black Beard",
+                "description": "Not looking for hook-ups"
+            },
+            {
+                "name": "Jack Sparrow",
+                "description": "Likes long walks on the beach, yoga, travel, and plundering Spanish galleons"
             }
         ]
 }
