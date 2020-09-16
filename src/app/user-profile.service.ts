@@ -9,17 +9,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserProfileService {
 
-  private readonly usersUrl = '../assets/user_database.json';  // URL to web api
+  // database URL
+  private readonly usersUrl = '../assets/user_database.json';
+  // object to hold user data from database0
   userData;
 
   constructor(private http: HttpClient) {
     this.prepUsers();
   }
 
+  /*
+  * Perform GET request to retrieve user data, save as attribute
+  */
   prepUsers() {
     this.userData = this.http.get<UserProfile[]>(this.usersUrl);
   }
 
+  /*
+  * Return attribute with user data
+  */
   getUsers(): Observable<UserProfile[]> {
     return this.userData;
   }

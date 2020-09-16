@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class NewProfileComponent implements OnInit {
 
+  // A form group and subsequent form controls
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -19,7 +20,10 @@ export class NewProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  /*
+  * Handles basic form submission 
+  */
+  onSubmit(): void {
     alert('This form is not yet connected to a database');
   }
 

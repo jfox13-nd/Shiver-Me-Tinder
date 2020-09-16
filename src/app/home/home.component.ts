@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
     },
   ];
   slides: any = [[]];
+
+  /**
+   * format data to populate cards
+   */
   chunk(arr, chunkSize) {
     const R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -43,15 +47,24 @@ export class HomeComponent implements OnInit {
     this.load_profiles();
   }
 
+  /**
+   * Retrive user provile data from userProfileService, store in an object
+   */
   load_profiles(): void {
     this.userProfileService.getUsers().subscribe( data => {this.profileData = data; });
   }
 
+  /**
+   * Return user profile information after a load
+   */
   get_profiles(): void {
     this.load_profiles();
     return this.profileData;
   }
 
+  /**
+   * Populate cards with user data
+   */
   log_data(): void {
     this.load_profiles();
     this.cards[0].title = this.profileData.users[0].name;
