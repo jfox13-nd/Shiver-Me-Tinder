@@ -24,6 +24,7 @@ import { NewProfileComponent } from './new-profile/new-profile.component';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
+    /* Basic Routing, each path below will render a specified component */
     RouterModule.forRoot([
       {path: 'home-page', component: HomeComponent},
       {path: 'new-profile', component: NewProfileComponent},
