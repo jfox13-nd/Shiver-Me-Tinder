@@ -1,4 +1,5 @@
 # Shiver-Me-Tinder
+Matthew DaDamio and Jack Fox
 A dating website by pirates for pirates.
 
 ## How to deploy Shiver-Me-Tinder locally:
