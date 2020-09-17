@@ -1,7 +1,7 @@
 {
-  "name": "angular.io-example",
-  "version": "0.0.0",
-  "description": "Example project from an angular.io guide.",
+  "name": "shiver-me-tinder",
+  "version": "0.3.0",
+  "description": "A dating service by pirates for pirates",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
