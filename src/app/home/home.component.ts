@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.load_profiles();
+    this.userProfileService.testParse();
   }
 
   /**
