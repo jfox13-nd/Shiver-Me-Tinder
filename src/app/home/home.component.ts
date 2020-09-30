@@ -45,14 +45,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.load_profiles();
-    this.userProfileService.testParse();
+  }
+
+  load_cards(results): void {
+    var i;
+    for (i=0; i < results.length; i++) {
+      this.cards[i].title = results[i].get('name')
+      this.cards[i].description = results[i].get('description');
+    }
   }
 
   /**
    * Retrive user provile data from userProfileService, store in an object
    */
   load_profiles(): void {
-    this.userProfileService.getUsers().subscribe( data => {this.profileData = data; });
+    var parentThis = this;
+    this.userProfileService.testParse().then(function(results) {parentThis.profileData = results});
   }
 
   /**
@@ -67,11 +75,10 @@ export class HomeComponent implements OnInit {
    * Populate cards with user data
    */
   log_data(): void {
-    this.load_profiles();
-    this.cards[0].title = this.profileData.users[0].name;
-    this.cards[0].description = this.profileData.users[0].description;
-    this.cards[1].title = this.profileData.users[1].name;
-    this.cards[1].description = this.profileData.users[1].description;
+    var parentThis = this;
+    this.userProfileService.testParse().then(function(results) {
+      parentThis.load_cards(results)
+    });
     this.slides = this.chunk(this.cards, 3);
   }
 

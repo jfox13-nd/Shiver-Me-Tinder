@@ -40,11 +40,17 @@ export class UserProfileService {
   }
 
   public testParse(){
-    var Stores = Parse.Object.extend("B4aVehicle");
+    var Stores = Parse.Object.extend("profile");
     var query = new Parse.Query(Stores);
-    query.find().then(function(results) {
-      console.log(results);
-    });
+    return query.find()
+    /*
+    .then(function(results) {
+      results.forEach(element => {
+        console.log(element.get('description'))
+      });
+      //console.log(results);
+      //console.log(results.get('description'))
+    }); */
   }
 
 }
