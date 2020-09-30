@@ -48,9 +48,9 @@ export class HomeComponent implements OnInit {
   }
 
   load_cards(results): void {
-    var i;
-    for (i=0; i < results.length; i++) {
-      this.cards[i].title = results[i].get('name')
+    let i;
+    for (i = 0; i < results.length; i++) {
+      this.cards[i].title = results[i].get('name');
       this.cards[i].description = results[i].get('description');
     }
   }
@@ -59,8 +59,9 @@ export class HomeComponent implements OnInit {
    * Retrive user provile data from userProfileService, store in an object
    */
   load_profiles(): void {
-    var parentThis = this;
-    this.userProfileService.testParse().then(function(results) {parentThis.profileData = results});
+    const parentThis = this;
+    // tslint:disable-next-line:only-arrow-functions
+    this.userProfileService.testParse().then(function(results) {parentThis.profileData = results; });
   }
 
   /**
@@ -75,9 +76,10 @@ export class HomeComponent implements OnInit {
    * Populate cards with user data
    */
   log_data(): void {
-    var parentThis = this;
+    const parentThis = this;
+    // tslint:disable-next-line:only-arrow-functions
     this.userProfileService.testParse().then(function(results) {
-      parentThis.load_cards(results)
+      parentThis.load_cards(results);
     });
     this.slides = this.chunk(this.cards, 3);
   }

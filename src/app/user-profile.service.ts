@@ -40,9 +40,9 @@ export class UserProfileService {
   }
 
   public testParse(){
-    var Stores = Parse.Object.extend("profile");
-    var query = new Parse.Query(Stores);
-    return query.find()
+    const Stores = Parse.Object.extend('profile');
+    const query = new Parse.Query(Stores);
+    return query.find();
   }
 
 }
