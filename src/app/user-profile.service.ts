@@ -43,14 +43,6 @@ export class UserProfileService {
     var Stores = Parse.Object.extend("profile");
     var query = new Parse.Query(Stores);
     return query.find()
-    /*
-    .then(function(results) {
-      results.forEach(element => {
-        console.log(element.get('description'))
-      });
-      //console.log(results);
-      //console.log(results.get('description'))
-    }); */
   }
 
 }
