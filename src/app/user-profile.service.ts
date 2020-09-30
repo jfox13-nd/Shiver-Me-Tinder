@@ -40,8 +40,9 @@ export class UserProfileService {
   }
 
   public testParse(){
-    var Stores = Parse.Object.extend("B4aVehicle");
-    var query = new Parse.Query(Stores);
+    const Stores = Parse.Object.extend('profile');
+    const query = new Parse.Query(Stores);
+    // tslint:disable-next-line:only-arrow-functions
     query.find().then(function(results) {
       console.log(results);
     });
