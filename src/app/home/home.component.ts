@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../user-profile.service';
+import { ChatService } from '../chat.service';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +8,22 @@ import { UserProfileService } from '../user-profile.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private userProfileService: UserProfileService, ) { }
+  constructor(private userProfileService: UserProfileService, private chatService: ChatService) { }
 
+  private messages = [];
   private profileData;
   cards = [
     {
       title: '',
       description: '',
       buttonText: 'Button',
-      img: ''//'https://i2-prod.bristolpost.co.uk/news/bristol-news/article271300.ece/ALTERNATES/s615/Blackbeard.jpg'
+      img: ''
     },
     {
       title: '',
       description: '',
       buttonText: 'Button',
-      img: ''//'https://ca-times.brightspotcdn.com/dims4/default/c89cad7/2147483647/strip/true/crop/600x400+0+0/resize/840x560!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F5f%2Fe9%2F4d182b154e52843afa07425e55d7%2Fla-xpm-photo-2013-nov-08-la-sh-johnny-depp-jack-sparrow-cake-20131108'
+      img: ''
     },
     {
       title: '',
@@ -45,6 +47,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.load_profiles();
+    this.chatService.logAllChats();
+    let parentThis = this;
+    this.chatService.getAllChats().then(function(results) { results.forEach(element => {
+      parentThis.messages.push(element.get('messages'));
+    });})
+    
   }
 
   load_cards(results): void {

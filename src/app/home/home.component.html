@@ -22,3 +22,14 @@
     </mdb-carousel-item>
     </mdb-carousel>
 </div>
+
+<div>
+    <h1>Chats</h1>
+    <div *ngFor='let chat of messages'>
+        <div *ngFor='let message of chat'>
+            <p>Sender: {{message[1]}}</p>
+            <p>Reciever: {{message[2]}}</p>
+            <p>Message: {{message[0]}}</p>
+        </div>
+    </div>
+</div>

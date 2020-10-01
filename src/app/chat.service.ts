@@ -8,23 +8,33 @@ Parse.initialize(
   '88WTwyNC16ZE8mnu57gDMAj2kNKBjRNdtTAx6CHe' // This is your Javascript key
 );
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class UserProfileService {
-
+export class ChatService {
   // back4app database endpoint
-  private readonly databaseEndpoint = "profile";
+  private readonly databaseEndpoint = "chat";
 
   constructor(private http: HttpClient) {}
 
   /**
    * Query all profiles from back4app database
    */
-  public getAllProfiles(){
+  public getAllChats(){
     var Stores = Parse.Object.extend(this.databaseEndpoint);
     var query = new Parse.Query(Stores);
     return query.find();
   }
 
+  /**
+   * Console log all chats
+   */
+  public logAllChats(){
+    var Stores = Parse.Object.extend(this.databaseEndpoint);
+    var query = new Parse.Query(Stores);
+    return query.find().then(function(results) {
+      console.log(results);
+    });
+  }
 }
