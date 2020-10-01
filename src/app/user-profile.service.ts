@@ -15,7 +15,7 @@ export class UserProfileService {
   /**
    * Query all profiles from back4app database
    */
-  public getAllProfiles(): void{
+  public getAllProfiles() {
     const Stores = Parse.Object.extend(this.databaseEndpoint);
     const query = new Parse.Query(Stores);
     return query.find();
