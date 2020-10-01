@@ -56,9 +56,9 @@ export class HomeComponent implements OnInit {
   }
 
   load_cards(results): void {
-    var i;
-    for (i=0; i < results.length; i++) {
-      this.cards[i].title = results[i].get('name')
+    let i;
+    for (i = 0; i < results.length; i++) {
+      this.cards[i].title = results[i].get('name');
       this.cards[i].description = results[i].get('description');
       this.cards[i].img = results[i].get('profileImage');
     }
@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
    */
   load_profiles(): void {
     var parentThis = this;
+    // tslint:disable-next-line:only-arrow-functions
     this.userProfileService.getAllProfiles().then(function(results) {parentThis.profileData = results});
   }
 
@@ -85,6 +86,7 @@ export class HomeComponent implements OnInit {
    */
   log_data(): void {
     var parentThis = this;
+    // tslint:disable-next-line:only-arrow-functions
     this.userProfileService.getAllProfiles().then(function(results) {
       parentThis.load_cards(results);
     });
