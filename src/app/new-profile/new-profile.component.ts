@@ -21,7 +21,7 @@ export class NewProfileComponent implements OnInit {
   }
 
   /*
-  * Handles basic form submission 
+  * Handles basic form submission
   */
   onSubmit(): void {
     alert('This form is not yet connected to a database');

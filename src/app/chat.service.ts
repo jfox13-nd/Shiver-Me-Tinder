@@ -14,7 +14,7 @@ Parse.initialize(
 })
 export class ChatService {
   // back4app database endpoint
-  private readonly databaseEndpoint = "chat";
+  private readonly databaseEndpoint = 'chat';
 
   constructor(private http: HttpClient) {}
 
@@ -22,8 +22,8 @@ export class ChatService {
    * Query all profiles from back4app database
    */
   public getAllChats(){
-    var Stores = Parse.Object.extend(this.databaseEndpoint);
-    var query = new Parse.Query(Stores);
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
     return query.find();
   }
 
@@ -31,9 +31,9 @@ export class ChatService {
    * Console log all chats
    */
   public logAllChats(){
-    var Stores = Parse.Object.extend(this.databaseEndpoint);
-    var query = new Parse.Query(Stores);
-    return query.find().then(function(results) {
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
+    return query.find().then( (results) => {
       console.log(results);
     });
   }

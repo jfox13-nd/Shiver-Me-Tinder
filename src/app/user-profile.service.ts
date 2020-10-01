@@ -14,7 +14,7 @@ Parse.initialize(
 export class UserProfileService {
 
   // back4app database endpoint
-  private readonly databaseEndpoint = "profile";
+  private readonly databaseEndpoint = 'profile';
 
   constructor(private http: HttpClient) {}
 
@@ -22,8 +22,8 @@ export class UserProfileService {
    * Query all profiles from back4app database
    */
   public getAllProfiles(){
-    var Stores = Parse.Object.extend(this.databaseEndpoint);
-    var query = new Parse.Query(Stores);
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
     return query.find();
   }
 

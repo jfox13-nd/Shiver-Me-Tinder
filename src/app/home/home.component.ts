@@ -48,11 +48,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.load_profiles();
     this.chatService.logAllChats();
-    let parentThis = this;
-    this.chatService.getAllChats().then(function(results) { results.forEach(element => {
-      parentThis.messages.push(element.get('messages'));
-    });})
-    
+    const parentThis = this;
+    this.chatService.getAllChats().then((results) => {
+      results.forEach(element => {
+        parentThis.messages.push(element.get('messages'));
+      });
+    });
   }
 
   load_cards(results): void {
@@ -68,9 +69,10 @@ export class HomeComponent implements OnInit {
    * Retrive user provile data from userProfileService, store in an object
    */
   load_profiles(): void {
-    var parentThis = this;
-    // tslint:disable-next-line:only-arrow-functions
-    this.userProfileService.getAllProfiles().then(function(results) {parentThis.profileData = results});
+    const parentThis = this;
+    this.userProfileService.getAllProfiles().then((results) => {
+      parentThis.profileData = results;
+    });
   }
 
   /**
@@ -85,9 +87,8 @@ export class HomeComponent implements OnInit {
    * Populate cards with user data
    */
   log_data(): void {
-    var parentThis = this;
-    // tslint:disable-next-line:only-arrow-functions
-    this.userProfileService.getAllProfiles().then(function(results) {
+    const parentThis = this;
+    this.userProfileService.getAllProfiles().then((results) => {
       parentThis.load_cards(results);
     });
     this.slides = this.chunk(this.cards, 3);
