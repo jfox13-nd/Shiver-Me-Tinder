@@ -21,6 +21,9 @@ export class UserProfileService {
     return query.find();
   }
 
+  /**
+   * Create a new user profile
+   */
   public createProfile(description: string, username: string, password: string, name: string, profileImage: string): void{
     const profile = Parse.Object.extend(this.databaseEndpoint);
     const newProfile = new profile();
