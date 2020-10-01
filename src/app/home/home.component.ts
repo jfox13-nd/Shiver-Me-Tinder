@@ -12,28 +12,7 @@ export class HomeComponent implements OnInit {
 
   private messages = [];
   private profileData;
-  cards = [
-    /*
-    {
-      title: '',
-      description: '',
-      buttonText: 'Button',
-      img: ''
-    },
-    {
-      title: '',
-      description: '',
-      buttonText: 'Button',
-      img: ''
-    },
-    {
-      title: '',
-      description: '',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    */
-  ];
+  cards = [];
   slides: any = [[]];
 
   /**
@@ -58,9 +37,11 @@ export class HomeComponent implements OnInit {
         parentThis.messages.push(element.get('messages'));
       });
     });
-    this.userProfileService.createProfile("description","u","p","n","pimage");
   }
 
+  /**
+   * Push data into the carosel cards
+   */
   load_cards(results): void {
     this.cards = []
     let i;
