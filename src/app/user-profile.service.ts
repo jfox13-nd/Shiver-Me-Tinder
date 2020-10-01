@@ -21,7 +21,7 @@ export class UserProfileService {
   /**
    * Query all profiles from back4app database
    */
-  public getAllProfiles(): void{
+  public getAllProfiles() {
     const Stores = Parse.Object.extend(this.databaseEndpoint);
     const query = new Parse.Query(Stores);
     return query.find();
@@ -36,7 +36,7 @@ export class UserProfileService {
     newProfile.set('yarrs', []);
     newProfile.set('narrs', []);
     newProfile.set('name', name);
-    newProfile.set('profileImage',profileImage);
+    newProfile.set('profileImage', profileImage);
 
     newProfile.save().then(
       (result) => {
