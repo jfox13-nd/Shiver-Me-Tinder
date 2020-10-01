@@ -30,7 +30,7 @@ export class UserProfileService {
     newProfile.set('yarrs', []);
     newProfile.set('narrs', []);
     newProfile.set('name', name);
-    newProfile.set('profileImage',profileImage);
+    newProfile.set('profileImage', profileImage);
 
     newProfile.save().then(
       (result) => {
