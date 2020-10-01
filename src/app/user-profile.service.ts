@@ -16,33 +16,18 @@ Parse.initialize(
 })
 export class UserProfileService {
 
-  // database URL
-  private readonly usersUrl = '../assets/user_database.json';
-  // object to hold user data from database0
-  userData;
+  // back4app database endpoint
+  private readonly databaseEndpoint = "profile";
 
-  constructor(private http: HttpClient) {
-    this.prepUsers();
-  }
+  constructor(private http: HttpClient) {}
 
-  /*
-  * Perform GET request to retrieve user data, save as attribute
-  */
-  prepUsers() {
-    this.userData = this.http.get<UserProfile[]>(this.usersUrl);
-  }
-
-  /*
-  * Return attribute with user data
-  */
-  getUsers(): Observable<UserProfile[]> {
-    return this.userData;
-  }
-
-  public testParse(){
-    var Stores = Parse.Object.extend("profile");
+  /**
+   * Query all profiles from back4app database
+   */
+  public getAllProfiles(){
+    var Stores = Parse.Object.extend(this.databaseEndpoint);
     var query = new Parse.Query(Stores);
-    return query.find()
+    return query.find();
   }
 
 }
