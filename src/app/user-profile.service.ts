@@ -1,36 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { UserProfile } from './user-profile';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Parse } from 'parse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserProfileService {
 
-  // database URL
-  private readonly usersUrl = '../assets/user_database.json';
-  // object to hold user data from database0
-  userData;
+  // back4app database endpoint
+  private readonly databaseEndpoint = 'profile';
 
-  constructor(private http: HttpClient) {
-    this.prepUsers();
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Query all profiles from back4app database
+   */
+  public getAllProfiles() {
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
+    return query.find();
   }
 
-  /*
-  * Perform GET request to retrieve user data, save as attribute
-  */
-  prepUsers() {
-    this.userData = this.http.get<UserProfile[]>(this.usersUrl);
-  }
+  public createProfile(description: string, username: string, password: string, name: string, profileImage: string): void{
+    const profile = Parse.Object.extend(this.databaseEndpoint);
+    const newProfile = new profile();
+    newProfile.set('description', description);
+    newProfile.set('username', username);
+    newProfile.set('password', password);
+    newProfile.set('yarrs', []);
+    newProfile.set('narrs', []);
+    newProfile.set('name', name);
+    newProfile.set('profileImage', profileImage);
 
-  /*
-  * Return attribute with user data
-  */
-  getUsers(): Observable<UserProfile[]> {
-    return this.userData;
+    newProfile.save().then(
+      (result) => {
+        console.log('Profile created: ', result);
+      },
+      (error) => {
+        console.error('Error while creating profile: ', error);
+      }
+    );
   }
-
 
 }
