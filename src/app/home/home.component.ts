@@ -43,10 +43,10 @@ export class HomeComponent implements OnInit {
    * Push data into the carosel cards
    */
   load_cards(results): void {
-    this.cards = []
+    this.cards = [];
     let i;
     for (i = 0; i < results.length; i++) {
-      this.cards.push({buttonText: 'Yarrr!',})
+      this.cards.push({buttonText: 'Yarrr!', });
       this.cards[i].title = results[i].get('name');
       this.cards[i].description = results[i].get('description');
       this.cards[i].img = results[i].get('profileImage');
