@@ -6,25 +6,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './new-profile.component.html',
   styleUrls: ['./new-profile.component.css']
 })
-export class NewProfileComponent implements OnInit {
+export class NewProfileComponent {
 
-  // A form group and subsequent form controls
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    description: new FormControl(''),
-  });
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  model: any = {};
   /*
   * Handles basic form submission
   */
   onSubmit(): void {
-    alert('This form is not yet connected to a database');
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model, null, 4));
   }
 
 }

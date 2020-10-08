@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProfileComponent } from './new-profile/new-profile.component';
 import { Parse } from 'parse';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
+import { MustMatchDirective } from './_helpers/must-match.directive';
 
 Parse.initialize(environment.PARSE_APP_ID, environment.PARSE_JS_KEY);
 Parse.serverURL = environment.serverURL;
@@ -22,9 +24,11 @@ Parse.serverURL = environment.serverURL;
     PageNotFoundComponent,
     HomeComponent,
     NavComponent,
-    NewProfileComponent
+    NewProfileComponent,
+    MustMatchDirective
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
