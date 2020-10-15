@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Parse } from 'parse';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserProfileService {
   // back4app database endpoint
   private readonly databaseEndpoint = 'profile';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   /**
    * Query all profiles from back4app database
@@ -24,16 +25,19 @@ export class UserProfileService {
   /**
    * Create a new user profile
    */
-  public createProfile(description: string, username: string, password: string, name: string, profileImage: string): void{
+  public createProfile(description: string, username: string, password: string, name: string, profileImage: string, rank: string): void{
     const profile = Parse.Object.extend(this.databaseEndpoint);
     const newProfile = new profile();
     newProfile.set('description', description);
-    // newProfile.set('username', username);
+    newProfile.set('username', username);
     // newProfile.set('password', password);
     newProfile.set('yarrs', []);
     newProfile.set('narrs', []);
     newProfile.set('name', name);
     newProfile.set('profileImage', profileImage);
+    newProfile.set('rank', rank);
+
+
 
 
     newProfile.save().then(
@@ -54,8 +58,9 @@ export class UserProfileService {
 
     // tslint:disable-next-line:no-shadowed-variable
     user.signUp().then((user: any) => {
-      if (typeof document !== 'undefined') { document.write(`User signed up: ${JSON.stringify(user)}`); }
+      if (typeof document !== 'undefined') { }
       console.log('User signed up', user);
+      this.router.navigate(['home-page']);
     }).catch((error: any) => {
       if (typeof document !== 'undefined') { document.write(`Error while signing up user: ${JSON.stringify(error)}`); }
       console.error('Error while signing up user', error);

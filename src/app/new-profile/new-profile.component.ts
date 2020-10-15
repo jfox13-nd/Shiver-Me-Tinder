@@ -18,8 +18,7 @@ export class NewProfileComponent implements OnInit{
   * Handles basic form submission
   */
   onSubmit(): void {
-    this.userProfileService.createProfile(this.model.title, this.model.username, this.model.password, this.model.Name, '' );
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model, null, 4));
+    this.userProfileService.createProfile(this.model.title, this.model.username, this.model.password, this.model.Name, 'https://blog.yellowoctopus.com.au/wp-content/uploads/2019/06/yellow-octopus-pirate-jokes.jpg', this.model.title );
   }
 
 }
