@@ -1,0 +1,76 @@
+<section class="form-gradient">
+  <!--Form with header-->
+  <mdb-card>
+
+    <!--Header-->
+    <div class="header pt-3 peach-gradient">
+
+      <div class="row d-flex justify-content-center">
+        <h3 class="white-text mb-3 pt-3 font-weight-bold">Log in</h3>
+      </div>
+
+      <div class="row mt-2 mb-3 d-flex justify-content-center">
+        <!--Facebook-->
+        <a class="fa-lg p-2 m-2 fb-ic">
+          <mdb-icon fab icon="facebook" class="white-text" size="lg"></mdb-icon>
+        </a>
+        <!--Twitter-->
+        <a class="fa-lg p-2 m-2 tw-ic">
+            <mdb-icon fab icon="twitter" class="white-text" size="lg"></mdb-icon>
+        </a>
+        <!--Google +-->
+        <a class="fa-lg p-2 m-2 gplus-ic">
+            <mdb-icon fab fab icon="google-plus" class="white-text" size="lg"></mdb-icon>
+        </a>
+      </div>
+
+    </div>
+    <!--Header-->
+
+    <mdb-card-body class="mx-4 mt-4">
+
+      <!--Body-->
+      <form [formGroup]="gradientForm">
+
+
+        <div class="md-form">
+          <input type="text" id="gradientFormUsernameEx" formControlName="gradientFormUsernameEx" class="form-control" mdbInput>
+          <label for="gradientFormUsernameEx">Your username</label>
+        </div>
+
+        <div class="md-form pb-1 pb-md-3">
+          <input type="password" id="gradientFormPasswordEx" formControlName="gradientFormPasswordEx" class="form-control" mdbInput>
+          <label for="gradientFormPasswordEx">Your password</label>
+          <p class="font-small grey-text d-flex justify-content-end">Forgot
+            <a href="#" class="dark-grey-text ml-1 font-weight-bold"> Password?</a>
+          </p>
+        </div>
+      </form>
+
+      <!--Grid row-->
+      <div class="row d-flex align-items-center mb-4">
+
+        <!--Grid column-->
+        <div class="col-md-1 col-md-5 d-flex align-items-start">
+          <div class="text-center">
+            <button type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Log in</button>
+          </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-7">
+          <p class="font-small grey-text d-flex justify-content-end mt-3">Don't have an account?
+            <a href="/new-profile" class="dark-grey-text ml-1 font-weight-bold"> Sign up</a>
+          </p>
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+    </mdb-card-body>
+
+  </mdb-card>
+  <!--/Form with header-->
+
+</section>
