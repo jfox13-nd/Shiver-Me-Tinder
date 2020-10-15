@@ -83,12 +83,14 @@ export class UserProfileService {
       // Do stuff after successful login
       if (typeof document !== 'undefined') {
         console.log('Logged in user', user);
+        this.router.navigate(['home-page'])
         return true;
       }
 
     }).catch((error: any) => {
       if (typeof document !== 'undefined') {
         console.error('Error while logging in user', error);
+        alert("Invalid Login")
         return false;
       }
     });
