@@ -46,7 +46,7 @@ export class UserProfileService {
         this.userSignup(username, password);
       },
       (error: any) => {
-        console.error('Error while creating profile: ', error);
+        console.log('Error while creating profile: ', error);
       }
     );
   }
@@ -63,7 +63,7 @@ export class UserProfileService {
       this.router.navigate(['home-page']);
     }).catch((error: any) => {
       if (typeof document !== 'undefined') { document.write(`Error while signing up user: ${JSON.stringify(error)}`); }
-      console.error('Error while signing up user', error);
+      console.log('Error while signing up user', error);
     });
   }
 
@@ -87,14 +87,14 @@ export class UserProfileService {
       // Do stuff after successful login
       if (typeof document !== 'undefined') {
         console.log('Logged in user', user);
-        this.router.navigate(['home-page'])
+        this.router.navigate(['home-page']);
         return true;
       }
 
     }).catch((error: any) => {
       if (typeof document !== 'undefined') {
-        console.error('Error while logging in user', error);
-        alert("Invalid Login")
+        console.log('Error while logging in user', error);
+        alert('Invalid Login');
         return false;
       }
     });

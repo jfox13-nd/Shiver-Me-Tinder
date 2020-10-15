@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userProfileService.login(this.gradientForm.value.gradientFormUsernameEx, this.gradientForm.value.gradientFormPasswordEx);
-    //this.gradientForm.value.gradientFormUsernameEx
   }
 
   ngOnInit() {
