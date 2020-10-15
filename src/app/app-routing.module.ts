@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { AuthguardGuard } from './authguard.guard';
+import { LoggedInGuard } from './logged-in.guard';
 import { NewProfileComponent } from './new-profile/new-profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -10,8 +11,8 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
     {path: 'home-page', component: HomeComponent, canActivate: [AuthguardGuard]},
-    {path: 'new-profile', component: NewProfileComponent},
-    {path: '', component: LoginComponent},
+    {path: 'new-profile', component: NewProfileComponent, canActivate: [LoggedInGuard]},
+    {path: '', component: LoginComponent, canActivate: [LoggedInGuard]},
     {path: '**', component: PageNotFoundComponent}
 ];
 

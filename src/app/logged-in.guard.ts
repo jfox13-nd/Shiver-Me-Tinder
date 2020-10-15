@@ -7,18 +7,19 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardGuard implements CanActivate {
+export class LoggedInGuard implements CanActivate {
   constructor(private userProfileService: UserProfileService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userProfileService.checkLogin()) {
+
+    if (!this.userProfileService.checkLogin()) {
       return true;
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['/home-page']);
       return false;
     }
   }
-
+  
 }
