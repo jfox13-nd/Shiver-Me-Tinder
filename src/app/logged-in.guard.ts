@@ -13,10 +13,11 @@ export class LoggedInGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+    // Prevents logged-in users from reaching a page
     if (!this.userProfileService.checkLogin()) {
       return true;
     } else {
+      // routes to home page
       this.router.navigate(['/home-page']);
       return false;
     }

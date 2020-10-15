@@ -14,7 +14,10 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public logOutUser() {
+  /**
+   * Log out user and route to login page
+   */
+  public logOutUser(): void {
     this.userProfileService.logout();
     this.router.navigate(['']);
   }

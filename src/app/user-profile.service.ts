@@ -30,16 +30,13 @@ export class UserProfileService {
     const newProfile = new profile();
     newProfile.set('description', description);
     newProfile.set('username', username);
-    // newProfile.set('password', password);
     newProfile.set('yarrs', []);
     newProfile.set('narrs', []);
     newProfile.set('name', name);
     newProfile.set('profileImage', profileImage);
     newProfile.set('rank', rank);
 
-
-
-
+    // Create new user if new profile creation works
     newProfile.save().then(
       (result: any) => {
         console.log('Profile created: ', result);
@@ -67,6 +64,9 @@ export class UserProfileService {
     });
   }
 
+  /**
+   * Check if there is already a logged in user
+   */
   public checkLogin(): boolean {
     const currentUser = Parse.User.current();
     console.log(currentUser);
@@ -76,12 +76,17 @@ export class UserProfileService {
     return false;
   }
 
+  /**
+   * Log out current user
+   */
   public logout(): void {
     Parse.User.logOut();
   }
 
+  /**
+   * Login a user with a username and password
+   */
   public login(username: string, password: string) {
-    // return Parse.User.logIn(username,password);
 
     return Parse.User.logIn(username, password).then((user: any) => {
       // Do stuff after successful login
