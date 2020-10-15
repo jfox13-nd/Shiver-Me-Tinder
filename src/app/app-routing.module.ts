@@ -8,7 +8,7 @@ import { NewProfileComponent } from './new-profile/new-profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 
-
+// Routing service that implements AuthGuards to block unauthorized users from certain navigation
 const routes: Routes = [
     {path: 'home-page', component: HomeComponent, canActivate: [AuthguardGuard]},
     {path: 'new-profile', component: NewProfileComponent, canActivate: [LoggedInGuard]},

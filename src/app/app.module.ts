@@ -36,8 +36,7 @@ Parse.serverURL = environment.serverURL;
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
-    /* Basic Routing, each path below will render a specified component */
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

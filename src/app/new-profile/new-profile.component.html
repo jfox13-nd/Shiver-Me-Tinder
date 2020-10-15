@@ -1,11 +1,12 @@
-<!-- Simple Angular form -->
-<!-- main app container -->
+<!-- sign-up container -->
 <div class="card m-3">
     <h5 class="card-header">Shiver Me Tinder Create Profile</h5>
     <div class="card-body">
+        <!-- Uses Angular Form to check entry validation -->
         <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
             <div class="form-row">
                 <div class="form-group col">
+                    <!-- pirate rank dropdown -->
                     <label>Pirate Rank</label>
                     <select name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
                         <option value=""></option>
@@ -19,6 +20,7 @@
                     </div>
                 </div>
                 <div class="form-group col-5">
+                    <!-- Name -->
                     <label>Name</label>
                     <input type="text" name="Name" class="form-control" [(ngModel)]="model.Name" #Name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Name.invalid }" required>
                     <div *ngIf="f.submitted && Name.invalid" class="invalid-feedback">
@@ -28,6 +30,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col">
+                    <!-- Username -->
                     <label>Username</label>
                     <input type="text" name="username" class="form-control" [(ngModel)]="model.username" #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required>
                     <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">
@@ -37,6 +40,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col">
+                    <!-- Password -->
                     <label>Password</label>
                     <input type="password" name="password" class="form-control" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
                     <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
@@ -45,6 +49,7 @@
                     </div>
                 </div>
                 <div class="form-group col">
+                    <!-- Double chech password match -->
                     <label>Confirm Password</label>
                     <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
                     <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
@@ -54,6 +59,7 @@
                 </div>
             </div>
             <div class="form-group form-check">
+                <!-- Terms and Conditions Checkbox -->
                 <input type="checkbox" name="acceptTerms" id="acceptTerms" class="form-check-input" [(ngModel)]="model.acceptTerms" #acceptTerms="ngModel" [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
                 <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
                 <div *ngIf="f.submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is required</div>
