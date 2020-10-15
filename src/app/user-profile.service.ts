@@ -76,6 +76,10 @@ export class UserProfileService {
     return false;
   }
 
+  public logout(): void {
+    Parse.User.logOut();
+  }
+
   public login(username: string, password: string) {
     // return Parse.User.logIn(username,password);
 
