@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Parse } from 'parse';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserProfileService {
   // back4app database endpoint
   private readonly databaseEndpoint = 'profile';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   /**
    * Query all profiles from back4app database
@@ -24,44 +25,49 @@ export class UserProfileService {
   /**
    * Create a new user profile
    */
-  public createProfile(description: string, username: string, password: string, name: string, profileImage: string): void{
+  public createProfile(description: string, username: string, password: string, name: string, profileImage: string, rank: string): void{
     const profile = Parse.Object.extend(this.databaseEndpoint);
     const newProfile = new profile();
     newProfile.set('description', description);
-    //newProfile.set('username', username);
-    //newProfile.set('password', password);
+    newProfile.set('username', username);
+    // newProfile.set('password', password);
     newProfile.set('yarrs', []);
     newProfile.set('narrs', []);
     newProfile.set('name', name);
     newProfile.set('profileImage', profileImage);
-  
+    newProfile.set('rank', rank);
+
+
+
 
     newProfile.save().then(
-      (result) => {
+      (result: any) => {
         console.log('Profile created: ', result);
-        this.userSignup(username,password);
+        this.userSignup(username, password);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error while creating profile: ', error);
       }
     );
   }
 
   private userSignup(username: string, password: string): void {
-    const user = new Parse.User()
+    const user = new Parse.User();
     user.set('username', username);
     user.set('password', password);
 
-    user.signUp().then((user) => {
-      if (typeof document !== 'undefined') document.write(`User signed up: ${JSON.stringify(user)}`);
+    // tslint:disable-next-line:no-shadowed-variable
+    user.signUp().then((user: any) => {
+      if (typeof document !== 'undefined') { }
       console.log('User signed up', user);
-    }).catch(error => {
-      if (typeof document !== 'undefined') document.write(`Error while signing up user: ${JSON.stringify(error)}`);
+      this.router.navigate(['home-page']);
+    }).catch((error: any) => {
+      if (typeof document !== 'undefined') { document.write(`Error while signing up user: ${JSON.stringify(error)}`); }
       console.error('Error while signing up user', error);
     });
   }
 
-  public checkLogin(): Boolean {
+  public checkLogin(): boolean {
     const currentUser = Parse.User.current();
     console.log(currentUser);
     if (currentUser) {
@@ -71,22 +77,22 @@ export class UserProfileService {
   }
 
   public login(username: string, password: string) {
-    //return Parse.User.logIn(username,password);
-    
-    return Parse.User.logIn(username,password).then((user) => {
+    // return Parse.User.logIn(username,password);
+
+    return Parse.User.logIn(username, password).then((user: any) => {
       // Do stuff after successful login
       if (typeof document !== 'undefined') {
         console.log('Logged in user', user);
         return true;
       }
-      
-    }).catch(error => {
+
+    }).catch((error: any) => {
       if (typeof document !== 'undefined') {
         console.error('Error while logging in user', error);
         return false;
       }
-    })
-    
+    });
+
   }
 
 }
