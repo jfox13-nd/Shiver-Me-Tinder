@@ -15,9 +15,10 @@
                 <h4>{{card.title}}</h4>
             </mdb-card-title>
             <p>{{card.description}}</p>
-            <a href="#" mdbBtn color="primary" class="waves-light" mdbWavesEffect>{{card.buttonText}}</a>
+            <a mdbBtn color="primary" class="waves-light" mdbWavesEffect (click)="card.expand = true;">{{card.buttonText}}</a>
             </mdb-card-body>
         </mdb-card>
+        <app-expand-profile *ngIf="card.expand" [title] = "card.title" [description] = "card.description" [image] = "card.img" [rank] = "card.rank" [username] = "card.username"></app-expand-profile>
         </div>
     </mdb-carousel-item>
     </mdb-carousel>

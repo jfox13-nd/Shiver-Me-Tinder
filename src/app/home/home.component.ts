@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../user-profile.service';
 import { ChatService } from '../chat.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -46,10 +47,13 @@ export class HomeComponent implements OnInit {
     this.cards = [];
     let i;
     for (i = 0; i < results.length; i++) {
-      this.cards.push({buttonText: 'Yarrr!', });
+      this.cards.push({buttonText: 'Expand Profile', });
       this.cards[i].title = results[i].get('name');
       this.cards[i].description = results[i].get('description');
       this.cards[i].img = results[i].get('profileImage');
+      this.cards[i].rank = results[i].get('rank');
+      this.cards[i].username = results[i].get('username');
+      this.cards[i].expand = false;
     }
   }
 
