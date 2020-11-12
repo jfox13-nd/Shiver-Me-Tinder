@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { UserProfileService } from '../user-profile.service';
-import { FormControl } from '@angular/forms';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-view',
@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ChatViewComponent implements OnInit {
 
+  private subscription: Subscription;
   private messages = [];
   private message_users = [];
   private message_usernames = [];
@@ -23,6 +24,8 @@ export class ChatViewComponent implements OnInit {
     const parentThis = this;
     this.current_username = this.userProfileService.getCurrentUser().getUsername();
     this.reload_messages();
+    const reload_interval = interval(10000);
+    this.subscription = reload_interval.subscribe(val => this.reload_messages());
   }
 
   public reload_messages() {
@@ -71,7 +74,7 @@ export class ChatViewComponent implements OnInit {
     this.chatService.getChatByID(relevantConvo).then( (results) => {
       results.set('activeChat','invalid')
       results.save().then( (results) => {
-        console.log("Chat saved")
+        console.log("User blocked")
         parentThis.reload_messages();
       });
     });
@@ -87,6 +90,10 @@ export class ChatViewComponent implements OnInit {
         parentThis.reload_messages();
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
