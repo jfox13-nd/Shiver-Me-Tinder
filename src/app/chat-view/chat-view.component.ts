@@ -29,6 +29,9 @@ export class ChatViewComponent implements OnInit {
     this.subscription = reloadInterval.subscribe(val => this.reload_messages());
   }
 
+  /**
+   * Queries all messages, filters out those that are not relevant to this user.
+   */
   public reload_messages() {
     const parentThis = this;
     const currentUserId = parentThis.userProfileService.getCurrentUser().id;
@@ -83,6 +86,9 @@ export class ChatViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Blocks another user from chatting with this user
+   */
   private blockUser(index) {
     const parentThis = this;
     const relevantConvo = this.rawMessages[index].id;
@@ -95,6 +101,9 @@ export class ChatViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Creates a new message object
+   */
   private send_message(index, message) {
     const parentThis = this;
     this.chatService.sendMessage(this.rawMessages[index].id, message, this.currentUsername).then( () => {
