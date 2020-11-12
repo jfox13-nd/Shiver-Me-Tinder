@@ -56,6 +56,10 @@ export class UserProfileService {
     );
   }
 
+  public getCurrentUser() {
+    return Parse.User.current();
+  }
+
   public updateProfile(description: string, name: string, profileImage: string, rank: string): void{
     const profile = Parse.Object.extend(this.databaseEndpoint);
     const query = new Parse.Query(profile);

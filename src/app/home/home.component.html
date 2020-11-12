@@ -1,15 +1,15 @@
 <h1>Shiver Me Tinder</h1>
 <p>A dating app by pirates, for pirates</p>
 
-<button (click)="log_data()">Show Profiles</button>
+<button (click)="log_data(someid)">Show Profiles</button>
 <!-- Display user cards carousel -->
 <div class="center">
     <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [interval]="'0'" [type]="'carousel-multi-item'"
                 [animation]="'slide'">
     <mdb-carousel-item *ngFor="let item of slides; let i = index">
         <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
-        <mdb-card class="my-1">
-            <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+        <mdb-card class="my-1" *ngIf="card.show">
+            <mdb-card-img [src]="card.img" alt="Advertisement image"></mdb-card-img>
             <mdb-card-body>
             <mdb-card-title>
                 <h4>{{card.title}}</h4>
@@ -19,6 +19,10 @@
             </mdb-card-body>
         </mdb-card>
         <app-expand-profile *ngIf="card.expand" [title] = "card.title" [description] = "card.description" [image] = "card.img" [rank] = "card.rank" [username] = "card.username"></app-expand-profile>
+        <div class="example-button-row" *ngIf="card.show">
+                <button type="button" (click)="disliked(card.user_id)" class="btn btn-outline-dark">Narr</button>
+                <button type="button" (click)="liked(card.user_id)" class="btn btn-outline-dark">Yarr</button>
+        </div>
         </div>
     </mdb-carousel-item>
     </mdb-carousel>
