@@ -83,6 +83,9 @@ export class UserProfileService {
     });
   }
 
+  /**
+   * Create a new user object
+   */
   private userSignup(username: string, password: string, profile, userId): any {
     const user = new Parse.User();
     user.set('username', username);
@@ -122,16 +125,22 @@ export class UserProfileService {
     return false;
   }
 
+  /**
+   * Return the current Parse User
+   */
   public getCurrentUser() {
     return Parse.User.current();
   }
 
+  /**
+   * Get the username from a user ID
+   */
   public getUsernameFromUserId(userId) {
     const User = new Parse.User();
     const query = new Parse.Query(User);
     return query.get(userId);
   }
-  
+
   /**
    * Log out current user
    */
