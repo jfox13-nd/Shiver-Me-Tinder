@@ -41,20 +41,7 @@ export class UserProfileService {
     newProfile.save().then(
       (result: any) => {
         console.log('Profile created: ', result);
-        //console.log("ID:",result.id)
         const user = this.userSignup(username, password, newProfile, { __type: 'Pointer', className: 'profile', objectId: result.id });
-        //newProfile.set('user_id', user);
-        /*
-        newProfile.save().then((response) => {
-          // You can use the "get" method to get the value of an attribute
-          // Ex: response.get("<ATTRIBUTE_NAME>")
-            if (typeof document !== 'undefined')
-              console.log('Updated profile', response);
-          }, (error) => {
-            if (typeof document !== 'undefined') 
-              console.error('Error while updating profile', error);
-        });
-        */
       },
       (error: any) => {
         console.log('Error while creating profile: ', error);
@@ -62,12 +49,11 @@ export class UserProfileService {
     );
   }
 
-  private userSignup(username: string, password: string, profile, user_id): any {
+  private userSignup(username: string, password: string, profile, userId): any {
     const user = new Parse.User();
-    const profilePointer = new Parse.Object("<YOUR_CLASS_NAME>");
     user.set('username', username);
     user.set('password', password);
-    user.set('profile_pointer', user_id);
+    user.set('profile_pointer', userId);
 
     // tslint:disable-next-line:no-shadowed-variable
     user.signUp().then((user: any) => {
@@ -75,11 +61,13 @@ export class UserProfileService {
       console.log('User signed up', user);
       profile.set('user_id', user);
       profile.save().then((response) => {
-          if (typeof document !== 'undefined')
+          if (typeof document !== 'undefined') {
             console.log('Updated profile', response);
+          }
         }, (error) => {
-          if (typeof document !== 'undefined') 
+          if (typeof document !== 'undefined') {
             console.error('Error while updating profile', error);
+          }
       });
       this.router.navigate(['home-page']);
     }).catch((error: any) => {
@@ -104,10 +92,12 @@ export class UserProfileService {
     return Parse.User.current();
   }
 
-  public getUsernameFromUserId(user_id) {
+  public getUsernameFromUserId(userId) {
     const User = new Parse.User();
     const query = new Parse.Query(User);
-    return query.get(user_id);
+    //const Stores = Parse.Object.extend(this.databaseEndpoint);
+    //const query = new Parse.Query(Stores);
+    return query.get(userId);
   }
   /**
    * Log out current user

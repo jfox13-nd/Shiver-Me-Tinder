@@ -15,7 +15,7 @@ export class ChatService {
   /**
    * Query all profiles from back4app database
    */
-  public getAllChats(){
+  public getAllChats(): any{
     const Stores = Parse.Object.extend(this.databaseEndpoint);
     const query = new Parse.Query(Stores);
     return query.find();
@@ -38,20 +38,20 @@ export class ChatService {
     return query.get(id);
   }
 
-  public sendMessage(chat_id, message_text, sender) {
+  public sendMessage(chatId, messageText, sender) {
     const message = Parse.Object.extend(this.messageEndpoint);
     const newMessage = new message();
-    newMessage.set('chat', { __type: 'Pointer', className: 'chat', objectId: chat_id });
+    newMessage.set('chat', { __type: 'Pointer', className: 'chat', objectId: chatId });
     newMessage.set('sender', sender);
-    newMessage.set('content', message_text);
-    return newMessage.save()
+    newMessage.set('content', messageText);
+    return newMessage.save();
   }
 
-  public getAllMessages(chat_id) {
+  public getAllMessages(chatId) {
     const Stores = Parse.Object.extend(this.messageEndpoint);
     const query = new Parse.Query(Stores);
     query.ascending('createdAt');
-    query.equalTo('chat', { __type: 'Pointer', className: 'chat', objectId: chat_id });
+    query.equalTo('chat', { __type: 'Pointer', className: 'chat', objectId: chatId });
     return query.find();
   }
 }

@@ -1,15 +1,15 @@
 <div>
-    <h1>{{current_username}}'s Parley Space</h1>
-    <button (click)="reload_messages()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
+    <h1>{{currentUsername}}'s Parley Space</h1>
+    <button (click)="reload_messages() && fix_usernames()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
     <div *ngFor='let chat of messages; let i=index'> 
         <div class="chat">
-            <h2>Parley with {{message_usernames[i]}}:</h2>
+            <h2>Parley with {{messageUsernames[i]}}:</h2>
             <button (click)="blockUser(i)" type="button">NARRR!!! (Block User)</button>
             <div *ngFor='let message of chat'>
                 <p>{{message[1]}}: {{message[0]}}</p>
             </div>
-            <input class="i" [(ngModel)]="message_boxes[i]" type="text"/>
-            <button (click)="send_message(i,message_boxes[i])" type="button">Send</button>
+            <input class="i" [(ngModel)]="messageBoxes[i]" type="text"/>
+            <button (click)="send_message(i,messageBoxes[i])" type="button">Send</button>
         </div>
     </div>
 </div>
