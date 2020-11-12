@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MustMatchDirective } from './_helpers/must-match.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ExpandProfileComponent } from './expand-profile/expand-profile.component';
 import { ChatViewComponent } from './chat-view/chat-view.component';
 
 Parse.initialize(environment.PARSE_APP_ID, environment.PARSE_JS_KEY);
@@ -29,6 +31,8 @@ Parse.serverURL = environment.serverURL;
     NewProfileComponent,
     MustMatchDirective,
     LoginComponent,
+    EditProfileComponent,
+    ExpandProfileComponent,
     ChatViewComponent
    ],
   imports: [
@@ -38,7 +42,7 @@ Parse.serverURL = environment.serverURL;
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
