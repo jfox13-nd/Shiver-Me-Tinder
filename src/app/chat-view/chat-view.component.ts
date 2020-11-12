@@ -38,7 +38,8 @@ export class ChatViewComponent implements OnInit {
         this.message_boxes.push();
         let userA = element.get('userA');
         let userB = element.get('userB');
-        if(userA.id == current_user_id || userB.id == current_user_id){
+        let chatActivity = element.get('activeChat');
+        if((userA.id == current_user_id || userB.id == current_user_id) && chatActivity == 'yes'){
           parentThis.messages.push(element.get('messages'));
           if(userA.id == current_user_id) {
             parentThis.message_users.push(userB);
@@ -60,6 +61,18 @@ export class ChatViewComponent implements OnInit {
             //parentThis.message_usernames.push(parentThis.userProfileService.getUsernameFromUserId(userA.id))
           }
         }
+      });
+    });
+  }
+
+  private blockUser(index) {
+    const parentThis = this;
+    const relevantConvo = this.raw_messages[index].id
+    this.chatService.getChatByID(relevantConvo).then( (results) => {
+      results.set('activeChat','invalid')
+      results.save().then( (results) => {
+        console.log("Chat saved")
+        parentThis.reload_messages();
       });
     });
   }

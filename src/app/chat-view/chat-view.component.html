@@ -4,6 +4,7 @@
     <div *ngFor='let chat of messages; let i=index'> 
         <div class="chat">
             <h2>Chat with {{message_usernames[i]}}:</h2>
+            <button (click)="blockUser(i)" type="button">NARRR!!! (Block User)</button>
             <div *ngFor='let message of chat'>
                 <p>{{message[1]}}: {{message[0]}}</p>
             </div>
