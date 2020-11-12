@@ -23,6 +23,14 @@ export class UserProfileService {
     return query.find();
   }
 
+  public getCurrentProfile() {
+    const Profile = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Profile);
+    const currentUser = Parse.User.current();
+    query.equalTo('user_id', { __type: 'Pointer', className: '_User', objectId: currentUser.id });
+    query.find().then((results) => {console.log(results[0].id); return results[0].id; });
+  }
+
   /**
    * Create a new user profile
    */
@@ -47,6 +55,32 @@ export class UserProfileService {
         console.log('Error while creating profile: ', error);
       }
     );
+  }
+
+  public updateProfile(description: string, name: string, profileImage: string, rank: string): void{
+    const profile = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(profile);
+    const Profile = Parse.Object.extend(this.databaseEndpoint);
+    const idquery = new Parse.Query(Profile);
+    const currentUser = Parse.User.current();
+    idquery.equalTo('user_id', { __type: 'Pointer', className: '_User', objectId: currentUser.id });
+    idquery.find().then((results) => {
+      console.log(results[0].id);
+      query.get(results[0].id).then((object) => {
+        object.set('description', description);
+        object.set('name', name);
+        object.set('profileImage', profileImage);
+        object.set('rank', rank);
+        object.save().then((response) => {
+          if (typeof document !== 'undefined') { }
+          console.log('Updated profile', response);
+          this.router.navigate(['home-page']);
+        }, (error) => {
+          if (typeof document !== 'undefined') { document.write(`Error while updating profile: ${JSON.stringify(error)}`); }
+          console.error('Error while updating profile', error);
+        });
+      });
+    });
   }
 
   private userSignup(username: string, password: string, profile, userId): any {

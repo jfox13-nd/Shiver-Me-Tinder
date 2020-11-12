@@ -1,0 +1,57 @@
+<!-- sign-up container -->
+<div class="card m-3">
+  <h5 class="card-header">Shiver Me Tinder Update Profile</h5>
+  <div class="card-body">
+      <!-- Uses Angular Form to check entry validation -->
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+          <div class="form-row">
+              <div class="form-group col">
+                  <!-- pirate rank dropdown -->
+                  <label>Pirate Rank</label>
+                  <select name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+                      <option value=""></option>
+                      <option value="Captain">Captain</option>
+                      <option value="First Mate">First Mate</option>
+                      <option value="Quartermaster">Quartermaster</option>
+                      <option value="Gunner">Gunner</option>
+                  </select>
+                  <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                      <div *ngIf="title.errors.required">Rank is required</div>
+                  </div>
+              </div>
+              <div class="form-group col-5">
+                  <!-- Name -->
+                  <label>Name</label>
+                  <input type="text" name="Name" class="form-control" [(ngModel)]="model.Name" #Name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Name.invalid }" required>
+                  <div *ngIf="f.submitted && Name.invalid" class="invalid-feedback">
+                      <div *ngIf="Name.errors.required">Name is required</div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col">
+                  <!-- Username -->
+                  <label>Profile Image URL</label>
+                  <input type="text" name="Image" class="form-control" [(ngModel)]="model.Image" #Image="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Image.invalid }" required>
+                  <div *ngIf="f.submitted && Image.invalid" class="invalid-feedback">
+                      <div *ngIf="Image.errors.required">Image is required</div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+                <!-- Description -->
+                <label>Description</label>
+                <input type="text" name="description" class="form-control" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required>
+                <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+                    <div *ngIf="description.errors.required">Description is required</div>
+                </div>
+            </div>
+        </div>
+          <div class="text-center">
+              <button class="btn btn-primary mr-1">Update</button>
+              <button class="btn btn-secondary" type="reset">Cancel</button>
+          </div>
+      </form>
+  </div>
+</div>
