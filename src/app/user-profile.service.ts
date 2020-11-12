@@ -95,10 +95,9 @@ export class UserProfileService {
   public getUsernameFromUserId(userId) {
     const User = new Parse.User();
     const query = new Parse.Query(User);
-    //const Stores = Parse.Object.extend(this.databaseEndpoint);
-    //const query = new Parse.Query(Stores);
     return query.get(userId);
   }
+  
   /**
    * Log out current user
    */

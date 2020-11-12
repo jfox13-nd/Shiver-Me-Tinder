@@ -1,6 +1,6 @@
 <div>
     <h1>{{currentUsername}}'s Parley Space</h1>
-    <button (click)="reload_messages() && fix_usernames()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
+    <button (click)="reload_messages()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
     <div *ngFor='let chat of messages; let i=index'> 
         <div class="chat">
             <h2>Parley with {{messageUsernames[i]}}:</h2>
