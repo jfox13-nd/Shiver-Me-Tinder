@@ -28,6 +28,7 @@ export class ChatViewComponent implements OnInit {
   public reload_messages() {
     const parentThis = this;
     const current_user_id = parentThis.userProfileService.getCurrentUser().id;
+    
     this.chatService.getAllChats().then((results) => {
       parentThis.messages = []
       parentThis.message_users = []
@@ -63,8 +64,16 @@ export class ChatViewComponent implements OnInit {
     });
   }
 
-  private send_message(index) {
+  private send_message(index, message) {
+    const parentThis = this;
     const relevantConvo = this.raw_messages[index].id
+    this.chatService.getChatByID(relevantConvo).then( (results) => {
+      results.add("messages",[message, parentThis.current_username])
+      results.save().then( (results) => {
+        console.log("Chat saved")
+        parentThis.reload_messages();
+      });
+    });
   }
 
 }

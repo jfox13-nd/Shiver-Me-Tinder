@@ -8,7 +8,7 @@
                 <p>{{message[1]}}: {{message[0]}}</p>
             </div>
             <input class="i" [(ngModel)]="message_boxes[i]" type="text"/>
-            <button (click)="send_message(i)" type="button">Send</button>
+            <button (click)="send_message(i,message_boxes[i])" type="button">Send</button>
         </div>
     </div>
 </div>
