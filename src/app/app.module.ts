@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MustMatchDirective } from './_helpers/must-match.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { ChatViewComponent } from './chat-view/chat-view.component';
 
 Parse.initialize(environment.PARSE_APP_ID, environment.PARSE_JS_KEY);
 Parse.serverURL = environment.serverURL;
@@ -27,7 +28,8 @@ Parse.serverURL = environment.serverURL;
     NavComponent,
     NewProfileComponent,
     MustMatchDirective,
-    LoginComponent
+    LoginComponent,
+    ChatViewComponent
    ],
   imports: [
     ReactiveFormsModule,

@@ -30,4 +30,10 @@ export class ChatService {
       console.log(results);
     });
   }
+
+  public getChatByID(id) {
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
+    return query.get(id);
+  }
 }

@@ -1,0 +1,14 @@
+<div>
+    <h1>Chats {{current_username}}</h1>
+    <button (click)="reload_messages()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
+    <div *ngFor='let chat of messages; let i=index'> 
+        <div class="chat">
+            <h2>Chat with {{message_usernames[i]}}:</h2>
+            <div *ngFor='let message of chat'>
+                <p>{{message[1]}}: {{message[0]}}</p>
+            </div>
+            <input class="i" [(ngModel)]="message_boxes[i]" type="text"/>
+            <button (click)="send_message(i)" type="button">Send</button>
+        </div>
+    </div>
+</div>
