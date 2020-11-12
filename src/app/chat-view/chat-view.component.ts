@@ -31,19 +31,36 @@ export class ChatViewComponent implements OnInit {
   public reload_messages() {
     const parentThis = this;
     const current_user_id = parentThis.userProfileService.getCurrentUser().id;
-    
+
     this.chatService.getAllChats().then((results) => {
       parentThis.messages = []
       parentThis.message_users = []
-      parentThis.message_boxes = []
-      parentThis.raw_messages = results;
+      //parentThis.message_boxes = []
+      parentThis.raw_messages = [];
+      
+      while(parentThis.message_boxes.length < results.length) {
+        parentThis.message_boxes.push("");
+      }
+      
+     //console.log("res len",results.length)
+
       results.forEach(element => {
-        this.message_boxes.push();
+        //this.message_boxes.push();
         let userA = element.get('userA');
         let userB = element.get('userB');
         let chatActivity = element.get('activeChat');
         if((userA.id == current_user_id || userB.id == current_user_id) && chatActivity == 'yes'){
-          parentThis.messages.push(element.get('messages'));
+          parentThis.raw_messages.push(element)
+          //parentThis.messages.push(element.get('messages'));
+          console.log(element.get('messages'))
+          let message_group = []
+          parentThis.chatService.getAllMessages(element.id).then( (message_results) => {
+            //console.log(message_results);
+            message_results.forEach(message_element => {
+              message_group.push([message_element.get('content'),message_element.get('sender')])
+            });
+          });
+          parentThis.messages.push(message_group);
           if(userA.id == current_user_id) {
             parentThis.message_users.push(userB);
             parentThis.userProfileService.getUsernameFromUserId(userB.id).then((user) => {
@@ -81,14 +98,11 @@ export class ChatViewComponent implements OnInit {
   }
 
   private send_message(index, message) {
+    console.log("index",index);
     const parentThis = this;
-    const relevantConvo = this.raw_messages[index].id
-    this.chatService.getChatByID(relevantConvo).then( (results) => {
-      results.add("messages",[message, parentThis.current_username])
-      results.save().then( (results) => {
-        console.log("Chat saved")
-        parentThis.reload_messages();
-      });
+    this.chatService.sendMessage(this.raw_messages[index].id, message, this.current_username).then( () => {
+      parentThis.reload_messages();
+      parentThis.message_boxes[index] = '';
     });
   }
 

@@ -1,9 +1,9 @@
 <div>
-    <h1>Chats {{current_username}}</h1>
+    <h1>{{current_username}}'s Parley Space</h1>
     <button (click)="reload_messages()" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Reload Messages</button>
     <div *ngFor='let chat of messages; let i=index'> 
         <div class="chat">
-            <h2>Chat with {{message_usernames[i]}}:</h2>
+            <h2>Parley with {{message_usernames[i]}}:</h2>
             <button (click)="blockUser(i)" type="button">NARRR!!! (Block User)</button>
             <div *ngFor='let message of chat'>
                 <p>{{message[1]}}: {{message[0]}}</p>
