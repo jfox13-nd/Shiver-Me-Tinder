@@ -1,9 +1,11 @@
 # Shiver-Me-Tinder
+
 Matthew DaDamio and Jack Fox
 
 A dating website by pirates for pirates.
 
 ## How to deploy Shiver-Me-Tinder locally:
+
 Once you have the source code downloaded and unzipped, install Node.js and serve your app with the Angular CLI.
 
 From the terminal, install the Angular CLI globally with:
@@ -16,65 +18,40 @@ Lastly, run `ng serve` to run the project locally
 
 For more help reference: https://angular.io/guide/setup-local
 
-* ship size (ft)
-* ship name
-* ____ seeking ____
-  * first mate
-  * captain
-* crew size
-* Peg leg (Y/N) ? Hook?
-* Profile
-* Radius (nautical miles)
-* preferred treasure
-* profile noise?
-  * seagull
-  * cannonball
+## Connecting a Database
 
-## Data saved for a person
-* username
-* password
-* profile
-* Yarrs list
-* Narrs list
+Our app is configured to use Parse through a Back4App database.
 
-{
-    username: '',
-    password: '',
-    profile: '',
-    yarrs: [],
-    narrs: []
-}
+1. Edit `environment.ts` to include your Parse API keys and Back4App URL.
 
-## Chat db
-* username1
-* password1
-* messages
-* booty
+2. Create the relevant classes in your Back4App database
 
-{
-    username1: '',
-    username2: '',
-    chats: [ {
-      time: ''
-      message: ''  
-    } ]
-}
+```
+_User (this is a default class)
+  objectID <String>
+  username <String>
+  password <String> (hidden)
+  profile_pointer <Pointer profile>
 
-## Pages
-* home page
-    * signup links
-    * login
-* signup page
-* map
-* edit profile (that user)
-* view profile (of other users)
-* chat
+chat
+  objectID <String>
+  userA <Pointer _User>
+  userB <Pointer _User>
+  activeChat <String> (default = wait)
 
-## Audio
-* constant sea shanties
-* "Yarr" / "Narr"
-* seagull noise / cannonball when pulling up profile
+message
+  objectID <String>
+  updatedAt <Date>
+  chat <Pointer chat>
+  sender <String>
+  content <String>
 
-## notes
-* Boats on an ocean, click to view profile
-* Yarr? Narr?
+profile
+  objectID <String>
+  name <String>
+  rank <String>
+  profileImage <String>
+  username <String>
+  description <String>
+  user_id <Pointer _User>
+```
