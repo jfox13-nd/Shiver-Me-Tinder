@@ -21,10 +21,14 @@ export class ChatViewComponent implements OnInit {
 
   constructor(private userProfileService: UserProfileService, private chatService: ChatService) {}
 
+  /**
+   * Load all chats and messages, start automatic message reloading every 10s
+   */
   ngOnInit(): void {
     const parentThis = this;
     this.currentUsername = this.userProfileService.getCurrentUser().getUsername();
     this.reload_messages();
+    setTimeout( () => {parentThis.reload_messages();}, 1000 );
     const reloadInterval = interval(10000);
     this.subscription = reloadInterval.subscribe(val => this.reload_messages());
   }
@@ -42,16 +46,18 @@ export class ChatViewComponent implements OnInit {
       parentThis.rawMessages = [];
       parentThis.messageUsernames = [];
 
+      // add new input forms if required
       while (parentThis.messageBoxes.length < results.length) {
         parentThis.messageBoxes.push('');
       }
 
+      // iterate though each chat and parse out relevant data
       results.forEach(element => {
         let userA = element.get('userA');
         let userB = element.get('userB');
         let chatActivity = element.get('activeChat');
-        if ((userA.id == currentUserId || userB.id == currentUserId) && chatActivity == 'yes'){
 
+        if ((userA.id == currentUserId || userB.id == currentUserId) && chatActivity == 'yes'){
           parentThis.rawMessages.push(element);
           let messageGroup = [];
           parentThis.chatService.getAllMessages(element.id).then( (messageResults) => {

@@ -1,3 +1,12 @@
+<a name="1.0.0"></a>
+# 1.0.0 (2020-11-14)
+
+### Features
+
+* **Chat Views:** Added A page to view chats with other users
+* **Send Messages:** Send and recieve chats from other users
+* **Persistent Chats:** Chat conversations persist until one of the users in the conversation blocks the other
+
 <a name="0.3.0"></a>
 # 0.3.0 (2020-10-14)
 

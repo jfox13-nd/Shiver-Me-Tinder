@@ -4,12 +4,12 @@
     <div *ngFor='let chat of messages; let i=index'> 
         <div class="chat">
             <h2>Parley with {{messageUsernames[i]}}:</h2>
-            <button (click)="blockUser(i)" type="button">NARRR!!! (Block User)</button>
+            <button (click)="blockUser(i)" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>NARRR!!! (Block User)</button>
             <div *ngFor='let message of chat'>
                 <p>{{message[1]}}: {{message[0]}}</p>
             </div>
             <input class="i" [(ngModel)]="messageBoxes[i]" type="text"/>
-            <button (click)="send_message(i,messageBoxes[i])" type="button">Send</button>
+            <button (click)="send_message(i,messageBoxes[i])" type="button" mdbBtn color="grey" rounded="true" class="z-depth-1a waves-light" mdbWavesEffect>Send</button>
         </div>
     </div>
 </div>
