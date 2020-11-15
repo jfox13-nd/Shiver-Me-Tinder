@@ -1,15 +1,17 @@
-<a name="0.4.0"></a>
-# 0.4.0 (2020-11-14)
+<a name="1.0.0"></a>
+# 1.0.0 (2020-11-14)
+
+### Jack Features
+
+* **Chat Views:** Added A page to view chats with other users
+* **Send Messages:** Send and recieve chats from other users
+* **Persistent Chats:** Chat conversations persist until one of the users in the conversation blocks the other
 
 ### Matthew Features
 
 * **Updating:** Users can now update their profile, including new name, description, pirate rank, and profile image.  This change will be indicated in the database.
 * **Profiles:** Users can now indicate that they want to see more of anoother user's profile, which will show their username and pirate rank along with the current profile data shown.
 * **Liking:** Users can now "yarr" or "narr" other users' profiles, given that the two users have a chat, at which point the liked/disliked user will be removed from the shown profiles and the change will be indicated in the database.
-
-### Jack Features
-
-* **Chat:** A chat I guess.
 
 <a name="0.3.0"></a>
 # 0.3.0 (2020-10-14)
