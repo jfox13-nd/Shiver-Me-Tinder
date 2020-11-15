@@ -38,6 +38,24 @@ export class ChatService {
     return query.get(id);
   }
 
+  /**
+   * finds and returns the chat id of the current user and any other user and the chat is not in the waiting stage
+   * this means that the likedid (other user) has already been liked or disliked by the current user and is used in
+   * either displaying or not the profile.  (It works trust me)
+   */
+  public getChatbyUser(likedid){
+    const Stores = Parse.Object.extend(this.databaseEndpoint);
+    const query = new Parse.Query(Stores);
+    query.equalTo('userA', { __type: 'Pointer', className: '_User', objectId: likedid});
+    query.equalTo('userB', Parse.User.current());
+    query.notEqualTo('activeChat', 'wait');
+    query.find().then((results) => {
+    }, (error) => {
+      console.error('Error while fetching chat', error);
+    });
+    return query.find();
+  }
+
   public sendMessage(chatId, messageText, sender) {
     const message = Parse.Object.extend(this.messageEndpoint);
     const newMessage = new message();

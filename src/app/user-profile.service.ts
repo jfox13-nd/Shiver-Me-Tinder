@@ -57,6 +57,9 @@ export class UserProfileService {
     );
   }
 
+  /**
+   * Update a user profile by finding the profile linked with the current user id and then set some stuff
+   */
   public updateProfile(description: string, name: string, profileImage: string, rank: string): void{
     const profile = Parse.Object.extend(this.databaseEndpoint);
     const query = new Parse.Query(profile);
